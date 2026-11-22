@@ -228,6 +228,20 @@ class ProceduralSoundEngine {
     this.playTone({ freq: 890, endFreq: 210, duration: 0.22, type: 'triangle', gain: 0.06, delay: 0.03 });
     this.playTone({ freq: 620, endFreq: 140, duration: 0.26, type: 'sine', gain: 0.05, delay: 0.06 });
   }
+
+  public playAirlockStep(sealedBehind = true): void {
+    // Crisp airlock hiss + subtle switch click
+    this.playTone({
+      freq: sealedBehind ? 300 : 480,
+      endFreq: sealedBehind ? 190 : 540,
+      duration: 0.11,
+      type: 'triangle',
+      gain: 0.055,
+    });
+    if (sealedBehind) {
+      this.playTone({ freq: 640, duration: 0.08, type: 'sine', gain: 0.035, delay: 0.04 });
+    }
+  }
 }
 
 export const soundEngine = new ProceduralSoundEngine();

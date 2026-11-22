@@ -16,6 +16,75 @@ interface AnthologyHubProps {
 }
 
 const ChapterMiniArt: React.FC<{ id: RiddleId; isLight: boolean }> = ({ id, isLight }) => {
+  if (id === 'virus-riddle') {
+    return (
+      <svg
+        viewBox="0 0 500 260"
+        className="h-full w-full"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden="true"
+      >
+        <defs>
+          <linearGradient id="hubVirusBg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={isLight ? '#222d3d' : '#080b12'} />
+            <stop offset="100%" stopColor={isLight ? '#2f3f54' : '#101826'} />
+          </linearGradient>
+        </defs>
+        <rect width="500" height="260" fill="url(#hubVirusBg)" />
+        {/* 4x4 Mini Lab Grid */}
+        {[0, 1, 2, 3].map((r) =>
+          [0, 1, 2, 3].map((c) => {
+            const x = 152 + c * 50;
+            const y = 34 + r * 50;
+            const isClean = r === 0 && c === 0;
+            const isExit = r === 3 && c === 3;
+            const isSealed = (r === 0 && c === 1) || (r === 1 && c === 0) || (r === 2 && c === 0);
+            return (
+              <rect
+                key={`${r}-${c}`}
+                x={x}
+                y={y}
+                width="38"
+                height="38"
+                rx="6"
+                fill={
+                  isClean
+                    ? '#163042'
+                    : isSealed
+                    ? '#132a24'
+                    : '#2a1820'
+                }
+                stroke={
+                  isClean
+                    ? '#7dd3fc'
+                    : isExit
+                    ? '#efc06e'
+                    : isSealed
+                    ? '#6abf94'
+                    : '#e07a6b'
+                }
+                strokeOpacity={isClean || isExit ? 0.8 : 0.4}
+                strokeWidth="1.3"
+              />
+            );
+          })
+        )}
+        {/* Animated Quarantine Path Pulse */}
+        <motion.path
+          d="M171 53 H221 H171 V153"
+          stroke="#efc06e"
+          strokeOpacity="0.8"
+          strokeWidth="2.5"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          animate={{ opacity: [0.45, 0.95, 0.45] }}
+          transition={{ repeat: Infinity, duration: 3.4, ease: 'easeInOut' }}
+        />
+      </svg>
+    );
+  }
+
   if (id === 'egg-drop') {
     return (
       <svg
@@ -536,11 +605,10 @@ export const AnthologyHub: React.FC<AnthologyHubProps> = ({
           </h1>
         </motion.div>
 
-        {/* Playable Chapters Gallery (Symmetrical 2x3 Grid for I-VI + Full-Width Master Finale VII) */}
+        {/* Playable Chapters Gallery (Symmetrical 2x4 Grid for all 8 Chapters) */}
         <section className="mt-10 sm:mt-14 grid gap-6 md:grid-cols-2">
           {playableChapters.map((chapter, idx) => {
             const progress = storage.riddles[chapter.id];
-            const isFinale = chapter.id === 'three-oracles';
 
             const bestLabel =
               chapter.id === 'bridge-riddle'
@@ -555,6 +623,8 @@ export const AnthologyHub: React.FC<AnthologyHubProps> = ({
                 ? `${progress?.bestMoves} steps`
                 : chapter.id === 'egg-drop'
                 ? `${progress?.bestMoves} drops`
+                : chapter.id === 'virus-riddle'
+                ? `${progress?.bestMoves} moves`
                 : `${progress?.bestMoves} Qs`;
 
             const badgeText =
@@ -570,6 +640,8 @@ export const AnthologyHub: React.FC<AnthologyHubProps> = ({
                 ? '0 TAX · 4×4 GRID'
                 : chapter.id === 'egg-drop'
                 ? '2 EGGS · 14 DROPS'
+                : chapter.id === 'virus-riddle'
+                ? '15 ROOMS · 4×4 LAB'
                 : 'FINALE · 3 QUESTIONS';
 
             return (
@@ -577,19 +649,11 @@ export const AnthologyHub: React.FC<AnthologyHubProps> = ({
                 key={chapter.id}
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.05 * idx, ease: [0.22, 1, 0.36, 1] }}
-                className={`group flex overflow-hidden rounded-[24px] border border-paper-900/10 bg-paper-50 shadow-[0_24px_60px_-24px_rgba(26,24,21,0.14)] dark:border-white/[0.08] dark:bg-ink-900/90 dark:shadow-[0_32px_90px_-30px_rgba(0,0,0,0.95)] transition-colors duration-300 ${
-                  isFinale ? 'md:col-span-2 flex-col md:flex-row' : 'flex-col'
-                }`}
+                transition={{ duration: 0.55, delay: 0.045 * idx, ease: [0.22, 1, 0.36, 1] }}
+                className="group flex flex-col overflow-hidden rounded-[24px] border border-paper-900/10 bg-paper-50 shadow-[0_24px_60px_-24px_rgba(26,24,21,0.14)] dark:border-white/[0.08] dark:bg-ink-900/90 dark:shadow-[0_32px_90px_-30px_rgba(0,0,0,0.95)] transition-colors duration-300"
               >
                 {/* Live Miniature Artwork Header */}
-                <div
-                  className={`relative overflow-hidden bg-ink-950 ${
-                    isFinale
-                      ? 'h-52 md:h-auto md:w-[46%] border-b md:border-b-0 md:border-r border-paper-900/10 dark:border-white/[0.07]'
-                      : 'h-48 sm:h-52 w-full border-b border-paper-900/10 dark:border-white/[0.07]'
-                  }`}
-                >
+                <div className="relative h-48 sm:h-52 w-full overflow-hidden border-b border-paper-900/10 dark:border-white/[0.07] bg-ink-950">
                   <ChapterMiniArt id={chapter.id} isLight={isLight} />
                   <div className="pointer-events-none absolute bottom-3 right-4 font-mono text-[10px] tracking-[0.18em] uppercase text-ivory-100/75">
                     {badgeText}

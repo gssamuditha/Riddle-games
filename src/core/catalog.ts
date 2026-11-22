@@ -86,8 +86,22 @@ export const RIDDLE_CATALOG: RiddleMeta[] = [
     accentTo: '#db2777',
   },
   {
-    id: 'three-oracles',
+    id: 'virus-riddle',
     chapterNumber: 'Chapter VII',
+    title: 'The Quarantine Grid',
+    classicName: 'The Virus Riddle',
+    tagline: 'Clear all 15 contaminated lab rooms without re-entering a sealed room—and escape out the SE exit.',
+    lorePreview:
+      'Every room in a 4×4 underground lab is contaminated except the clean NW entrance. Trigger every sterilizer switch and finish at the SE exit—without breaking the parity trap.',
+    difficulty: 'Master',
+    estimatedTime: '4–7 min',
+    status: 'playable',
+    accentFrom: '#10b981',
+    accentTo: '#047857',
+  },
+  {
+    id: 'three-oracles',
+    chapterNumber: 'Chapter VIII',
     title: 'The Three Oracles',
     classicName: 'The Three Gods Riddle',
     tagline: 'Truth, False, and Random answer only "DA" or "JA"—and you have just three questions.',

@@ -16,6 +16,7 @@ import { FerryGame } from './games/midnight-ferry/FerryGame';
 import { PilgrimGame } from './games/penniless-pilgrim/PilgrimGame';
 import { VaultGame } from './games/three-doors/VaultGame';
 import { OraclesGame } from './games/three-oracles/OraclesGame';
+import { VirusGame } from './games/virus-riddle/VirusGame';
 
 export const App: React.FC = () => {
   const [storage, setStorage] = useState<ArchiveStorage>(() => loadArchiveStorage());
@@ -154,6 +155,24 @@ export const App: React.FC = () => {
         }}
         onVictoryRecorded={(result) => {
           setStorage(recordRiddleVictory('egg-drop', result));
+        }}
+      />
+    );
+  }
+
+  if (activeRiddle === 'virus-riddle') {
+    return (
+      <VirusGame
+        theme={storage.theme}
+        onToggleTheme={handleToggleTheme}
+        muted={storage.muted}
+        onToggleMute={handleToggleMute}
+        onBackToHub={() => setActiveRiddle(null)}
+        onAttemptStarted={() => {
+          setStorage(recordRiddleAttempt('virus-riddle'));
+        }}
+        onVictoryRecorded={(result) => {
+          setStorage(recordRiddleVictory('virus-riddle', result));
         }}
       />
     );
