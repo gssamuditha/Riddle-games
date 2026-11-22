@@ -11,6 +11,7 @@ import {
 import type { ArchiveStorage, RiddleId, ThemeMode } from './core/types';
 import { JugsGame } from './games/alchemist-jugs/JugsGame';
 import { BridgeGame } from './games/bridge-riddle/BridgeGame';
+import { EggGame } from './games/egg-drop/EggGame';
 import { FerryGame } from './games/midnight-ferry/FerryGame';
 import { PilgrimGame } from './games/penniless-pilgrim/PilgrimGame';
 import { VaultGame } from './games/three-doors/VaultGame';
@@ -135,6 +136,24 @@ export const App: React.FC = () => {
         }}
         onVictoryRecorded={(result) => {
           setStorage(recordRiddleVictory('penniless-pilgrim', result));
+        }}
+      />
+    );
+  }
+
+  if (activeRiddle === 'egg-drop') {
+    return (
+      <EggGame
+        theme={storage.theme}
+        onToggleTheme={handleToggleTheme}
+        muted={storage.muted}
+        onToggleMute={handleToggleMute}
+        onBackToHub={() => setActiveRiddle(null)}
+        onAttemptStarted={() => {
+          setStorage(recordRiddleAttempt('egg-drop'));
+        }}
+        onVictoryRecorded={(result) => {
+          setStorage(recordRiddleVictory('egg-drop', result));
         }}
       />
     );

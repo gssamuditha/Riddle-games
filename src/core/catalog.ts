@@ -72,8 +72,22 @@ export const RIDDLE_CATALOG: RiddleMeta[] = [
     accentTo: '#0284c7',
   },
   {
-    id: 'three-oracles',
+    id: 'egg-drop',
     chapterNumber: 'Chapter VI',
+    title: 'The Belltower Eggs',
+    classicName: 'The 2-Egg Drop Riddle',
+    tagline: '100 floors, 2 crystal eggs, and 14 drops to pinpoint the exact highest safe floor.',
+    lorePreview:
+      'Beside a 100-floor stone belltower, you hold two identical crystal eggs. Find the exact highest floor an egg can survive without shattering—guaranteed in 14 drops or fewer.',
+    difficulty: 'Master',
+    estimatedTime: '3–6 min',
+    status: 'playable',
+    accentFrom: '#f472b6',
+    accentTo: '#db2777',
+  },
+  {
+    id: 'three-oracles',
+    chapterNumber: 'Chapter VII',
     title: 'The Three Oracles',
     classicName: 'The Three Gods Riddle',
     tagline: 'Truth, False, and Random answer only "DA" or "JA"—and you have just three questions.',

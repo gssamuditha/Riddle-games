@@ -4,6 +4,7 @@ export type RiddleId =
   | 'alchemist-jugs'
   | 'three-doors'
   | 'penniless-pilgrim'
+  | 'egg-drop'
   | 'three-oracles';
 
 export type RiddleAvailability = 'playable' | 'coming-soon';

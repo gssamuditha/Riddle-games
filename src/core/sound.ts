@@ -215,6 +215,19 @@ class ProceduralSoundEngine {
       gain: 0.055,
     });
   }
+
+  public playEggBounce(): void {
+    // Clean crystal bounce chime (survived!)
+    this.playTone({ freq: 520, endFreq: 680, duration: 0.14, type: 'sine', gain: 0.065 });
+    this.playTone({ freq: 780, endFreq: 860, duration: 0.16, type: 'triangle', gain: 0.045, delay: 0.08 });
+  }
+
+  public playEggShatter(): void {
+    // Crisp high crystal fracture + downward scatter
+    this.playTone({ freq: 1180, endFreq: 380, duration: 0.16, type: 'sawtooth', gain: 0.065 });
+    this.playTone({ freq: 890, endFreq: 210, duration: 0.22, type: 'triangle', gain: 0.06, delay: 0.03 });
+    this.playTone({ freq: 620, endFreq: 140, duration: 0.26, type: 'sine', gain: 0.05, delay: 0.06 });
+  }
 }
 
 export const soundEngine = new ProceduralSoundEngine();

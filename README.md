@@ -11,11 +11,12 @@ An interactive web anthology that reimagines timeless logic and probability para
 | **Chapter III** | **The Alchemist’s Jugs** | 3L & 5L Water Jug Puzzle | Measure exactly **4L** of Starlight Elixir using two unmarked crystal flasks (**Par: 6 steps**); includes fluid pouring animations & BFS solver. |
 | **Chapter IV** | **The Three Vault Doors** | Monty Hall Paradox | Collect **6 Astral Keys** within 10 rounds with live Stay vs. Switch telemetry and an interactive **100-trial probability simulator**. |
 | **Chapter V** | **The Penniless Pilgrim** | The Penniless Pilgrim Riddle | Navigate the 4×4 street grid of Duonia (`E +2`, `W −2`, `S ×2`, `N ÷2`) without repeating a street to reach the SE Temple at **0 tax** (Par: 20 steps). |
-| **Chapter VI** | **The Three Oracles** | The Three Gods Riddle | Identify **Truth**, **False**, and **Random** speaking an unknown `DA`/`JA` tongue in **3 direct or embedded questions**; live 12-world logical solver. |
+| **Chapter VI** | **The Belltower Eggs** | The 2-Egg Drop Riddle | Pinpoint the exact highest safe floor of a 100-floor belltower with **2 crystal eggs** in at most **14 drops**, backed by an adversarial worst-case strategy engine. |
+| **Chapter VII** | **The Three Oracles** | The Three Gods Riddle | Identify **Truth**, **False**, and **Random** speaking an unknown `DA`/`JA` tongue in **3 direct or embedded questions**; live 12-world logical solver. |
 
 ## Features
 
-- **Pure, Tested Game Engines:** Each chapter's rules and optimal solvers live in framework-free `engine.ts` modules covered by **39 Vitest unit tests**.
+- **Pure, Tested Game Engines:** Each chapter's rules and optimal solvers live in framework-free `engine.ts` modules covered by **44 Vitest unit tests**.
 - **Handcrafted Minimalist Visuals:** Custom SVG figures, weight-sensitive bridge physics, buoyant rowing water waves, animated liquid transfers, 3D swinging bronze vault doors, and veiled marble Oracles.
 - **Dark & Light Themes:** Seamlessly switch between *Nocturne Ink* (dark) and *Warm Archival Parchment* (light), persisted in `localStorage`.
 - **Zero-Asset Procedural Audio:** Synthesized Web Audio API footsteps, bridge creaks, oar strokes, pouring crystal liquids, vault locks, and oracle chimes with a global mute toggle.
@@ -55,8 +56,9 @@ npm run build
 │       ├── midnight-ferry/    # Chapter II — engine, tests, story & scene
 │       ├── alchemist-jugs/    # Chapter III — engine, tests, story & scene
 │       ├── three-doors/       # Chapter IV — engine, tests, story & scene
-│       ├── penniless-pilgrim/ # Chapter V  — engine, tests, story & scene
-│       └── three-oracles/     # Chapter VI — engine, tests, story & scene
+│       ├── penniless-pilgrim/ # Chapter V   — engine, tests, story & scene
+│       ├── egg-drop/          # Chapter VI  — engine, tests, story & scene
+│       └── three-oracles/     # Chapter VII — engine, tests, story & scene
 ├── CONTRIBUTING.md            # Guide for adding Chapter VI+
 └── LICENSE                    # MIT License
 ```
