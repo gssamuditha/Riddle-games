@@ -16,6 +16,70 @@ interface AnthologyHubProps {
 }
 
 const ChapterMiniArt: React.FC<{ id: RiddleId; isLight: boolean }> = ({ id, isLight }) => {
+  if (id === 'penniless-pilgrim') {
+    return (
+      <svg
+        viewBox="0 0 500 260"
+        className="h-full w-full"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden="true"
+      >
+        <defs>
+          <linearGradient id="hubPilgrimBg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={isLight ? '#243042' : '#090c14'} />
+            <stop offset="100%" stopColor={isLight ? '#304057' : '#111828'} />
+          </linearGradient>
+        </defs>
+        <rect width="500" height="260" fill="url(#hubPilgrimBg)" />
+        {/* Stylized 4x4 City Grid */}
+        {[0, 1, 2, 3, 4].map((i) => (
+          <g key={i}>
+            <line
+              x1="130"
+              y1={46 + i * 42}
+              x2="370"
+              y2={46 + i * 42}
+              stroke={isLight ? '#516684' : '#26344d'}
+              strokeWidth="2.5"
+            />
+            <line
+              x1={130 + i * 60}
+              y1="46"
+              x2={130 + i * 60}
+              y2="214"
+              stroke={isLight ? '#516684' : '#26344d'}
+              strokeWidth="2.5"
+            />
+          </g>
+        ))}
+        {/* Illuminated Golden Route Hint */}
+        <path
+          d="M130 46 H250 V172 H370 V46 H310 V88 H130 V214 H370"
+          stroke="#efc06e"
+          strokeOpacity="0.65"
+          strokeWidth="3"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        {/* Animated Pilgrim Glow */}
+        <motion.circle
+          cx="250"
+          cy="46"
+          r="6.5"
+          fill="#fff5dc"
+          stroke="#efc06e"
+          strokeWidth="2"
+          animate={{ cx: [250, 250, 370, 250], cy: [46, 172, 172, 46] }}
+          transition={{ repeat: Infinity, duration: 9, ease: 'easeInOut' }}
+        />
+        {/* SE Golden Temple */}
+        <circle cx="370" cy="214" r="10" fill="#202a24" stroke="#6abf94" strokeWidth="1.8" />
+        <circle cx="370" cy="214" r="4" fill="#8be0b5" />
+      </svg>
+    );
+  }
+
   if (id === 'three-doors') {
     return (
       <svg
@@ -430,11 +494,10 @@ export const AnthologyHub: React.FC<AnthologyHubProps> = ({
           </h1>
         </motion.div>
 
-        {/* Playable Chapters Gallery (2x2 for Chapters I-IV + Full-Width Master Finale for Chapter V) */}
+        {/* Playable Chapters Gallery (Symmetrical 2x3 Grid for all 6 Chapters) */}
         <section className="mt-10 sm:mt-14 grid gap-6 md:grid-cols-2">
           {playableChapters.map((chapter, idx) => {
             const progress = storage.riddles[chapter.id];
-            const isFinale = chapter.id === 'three-oracles';
 
             const bestLabel =
               chapter.id === 'bridge-riddle'
@@ -445,6 +508,8 @@ export const AnthologyHub: React.FC<AnthologyHubProps> = ({
                 ? `${progress?.bestMoves} steps`
                 : chapter.id === 'three-doors'
                 ? `${progress?.bestMoves} rds`
+                : chapter.id === 'penniless-pilgrim'
+                ? `${progress?.bestMoves} steps`
                 : `${progress?.bestMoves} Qs`;
 
             const badgeText =
@@ -456,6 +521,8 @@ export const AnthologyHub: React.FC<AnthologyHubProps> = ({
                 ? 'PAR 6 STEPS'
                 : chapter.id === 'three-doors'
                 ? '6 KEYS · 10 RDS'
+                : chapter.id === 'penniless-pilgrim'
+                ? '0 TAX · 4×4 GRID'
                 : 'MASTER · 3 QUESTIONS';
 
             return (
@@ -463,19 +530,11 @@ export const AnthologyHub: React.FC<AnthologyHubProps> = ({
                 key={chapter.id}
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.07 * idx, ease: [0.22, 1, 0.36, 1] }}
-                className={`group flex overflow-hidden rounded-[24px] border border-paper-900/10 bg-paper-50 shadow-[0_24px_60px_-24px_rgba(26,24,21,0.14)] dark:border-white/[0.08] dark:bg-ink-900/90 dark:shadow-[0_32px_90px_-30px_rgba(0,0,0,0.95)] transition-colors duration-300 ${
-                  isFinale ? 'md:col-span-2 flex-col md:flex-row' : 'flex-col'
-                }`}
+                transition={{ duration: 0.55, delay: 0.06 * idx, ease: [0.22, 1, 0.36, 1] }}
+                className="group flex flex-col overflow-hidden rounded-[24px] border border-paper-900/10 bg-paper-50 shadow-[0_24px_60px_-24px_rgba(26,24,21,0.14)] dark:border-white/[0.08] dark:bg-ink-900/90 dark:shadow-[0_32px_90px_-30px_rgba(0,0,0,0.95)] transition-colors duration-300"
               >
                 {/* Live Miniature Artwork Header */}
-                <div
-                  className={`relative overflow-hidden bg-ink-950 ${
-                    isFinale
-                      ? 'h-52 md:h-auto md:w-[46%] border-b md:border-b-0 md:border-r border-paper-900/10 dark:border-white/[0.07]'
-                      : 'h-48 sm:h-52 w-full border-b border-paper-900/10 dark:border-white/[0.07]'
-                  }`}
-                >
+                <div className="relative h-48 sm:h-52 w-full overflow-hidden border-b border-paper-900/10 dark:border-white/[0.07] bg-ink-950">
                   <ChapterMiniArt id={chapter.id} isLight={isLight} />
                   <div className="pointer-events-none absolute bottom-3 right-4 font-mono text-[10px] tracking-[0.18em] uppercase text-ivory-100/75">
                     {badgeText}

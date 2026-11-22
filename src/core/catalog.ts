@@ -58,8 +58,22 @@ export const RIDDLE_CATALOG: RiddleMeta[] = [
     accentTo: '#b45309',
   },
   {
-    id: 'three-oracles',
+    id: 'penniless-pilgrim',
     chapterNumber: 'Chapter V',
+    title: 'The Penniless Pilgrim',
+    classicName: 'The Penniless Pilgrim Riddle',
+    tagline: 'Walk the taxed streets of Duonia without repeating a road—and reach the Temple owing 0.',
+    lorePreview:
+      'You enter the city of Duonia without a coin to your name, already owing 4 silver. Navigate the 4×4 street grid where every direction changes your tax, and arrive at the Temple at exactly 0.',
+    difficulty: 'Master',
+    estimatedTime: '5–8 min',
+    status: 'playable',
+    accentFrom: '#38bdf8',
+    accentTo: '#0284c7',
+  },
+  {
+    id: 'three-oracles',
+    chapterNumber: 'Chapter VI',
     title: 'The Three Oracles',
     classicName: 'The Three Gods Riddle',
     tagline: 'Truth, False, and Random answer only "DA" or "JA"—and you have just three questions.',

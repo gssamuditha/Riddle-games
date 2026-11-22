@@ -3,6 +3,7 @@ export type RiddleId =
   | 'midnight-ferry'
   | 'alchemist-jugs'
   | 'three-doors'
+  | 'penniless-pilgrim'
   | 'three-oracles';
 
 export type RiddleAvailability = 'playable' | 'coming-soon';

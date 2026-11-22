@@ -204,6 +204,17 @@ class ProceduralSoundEngine {
     this.playTone({ freq: 165, endFreq: 98, duration: 0.32, type: 'triangle', gain: 0.065 });
     this.playTone({ freq: 118, endFreq: 74, duration: 0.36, type: 'sine', gain: 0.055, delay: 0.09 });
   }
+
+  public playStreetStep(isNegativeTax = false): void {
+    // Soft stone step with crisp coin/chime tint
+    this.playTone({
+      freq: isNegativeTax ? 460 : 340,
+      endFreq: isNegativeTax ? 520 : 290,
+      duration: 0.09,
+      type: 'triangle',
+      gain: 0.055,
+    });
+  }
 }
 
 export const soundEngine = new ProceduralSoundEngine();
