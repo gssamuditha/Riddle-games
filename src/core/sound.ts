@@ -242,6 +242,30 @@ class ProceduralSoundEngine {
       this.playTone({ freq: 640, duration: 0.08, type: 'sine', gain: 0.035, delay: 0.04 });
     }
   }
+
+  public playCoinClink(): void {
+    // Bright gold coin metallic clink
+    this.playTone({ freq: 1420, endFreq: 1360, duration: 0.08, type: 'sine', gain: 0.04 });
+    this.playTone({ freq: 2150, duration: 0.07, type: 'triangle', gain: 0.025, delay: 0.015 });
+  }
+
+  public playScaleWeigh(tilted: boolean): void {
+    // Brass beam pivot creak + balance chime
+    this.playTone({
+      freq: tilted ? 240 : 330,
+      endFreq: tilted ? 175 : 330,
+      duration: 0.3,
+      type: 'triangle',
+      gain: 0.055,
+    });
+    this.playTone({
+      freq: tilted ? 493.88 : 587.33,
+      duration: 0.25,
+      type: 'sine',
+      gain: 0.045,
+      delay: 0.14,
+    });
+  }
 }
 
 export const soundEngine = new ProceduralSoundEngine();

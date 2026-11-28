@@ -100,8 +100,22 @@ export const RIDDLE_CATALOG: RiddleMeta[] = [
     accentTo: '#047857',
   },
   {
-    id: 'three-oracles',
+    id: 'counterfeit-coin',
     chapterNumber: 'Chapter VIII',
+    title: 'The Twelve Coins',
+    classicName: 'The Counterfeit Coin Riddle',
+    tagline: '12 gold coins, 1 fake (heavier or lighter), and just 3 weighings on a balance scale.',
+    lorePreview:
+      'Among twelve identical gold coins hides a single counterfeit—either heavier or lighter than the rest. Identify the fake coin and its weight difference in three weighings.',
+    difficulty: 'Master',
+    estimatedTime: '4–7 min',
+    status: 'playable',
+    accentFrom: '#f59e0b',
+    accentTo: '#d97706',
+  },
+  {
+    id: 'three-oracles',
+    chapterNumber: 'Chapter IX',
     title: 'The Three Oracles',
     classicName: 'The Three Gods Riddle',
     tagline: 'Truth, False, and Random answer only "DA" or "JA"—and you have just three questions.',

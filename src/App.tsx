@@ -11,6 +11,7 @@ import {
 import type { ArchiveStorage, RiddleId, ThemeMode } from './core/types';
 import { JugsGame } from './games/alchemist-jugs/JugsGame';
 import { BridgeGame } from './games/bridge-riddle/BridgeGame';
+import { CoinGame } from './games/counterfeit-coin/CoinGame';
 import { EggGame } from './games/egg-drop/EggGame';
 import { FerryGame } from './games/midnight-ferry/FerryGame';
 import { PilgrimGame } from './games/penniless-pilgrim/PilgrimGame';
@@ -173,6 +174,24 @@ export const App: React.FC = () => {
         }}
         onVictoryRecorded={(result) => {
           setStorage(recordRiddleVictory('virus-riddle', result));
+        }}
+      />
+    );
+  }
+
+  if (activeRiddle === 'counterfeit-coin') {
+    return (
+      <CoinGame
+        theme={storage.theme}
+        onToggleTheme={handleToggleTheme}
+        muted={storage.muted}
+        onToggleMute={handleToggleMute}
+        onBackToHub={() => setActiveRiddle(null)}
+        onAttemptStarted={() => {
+          setStorage(recordRiddleAttempt('counterfeit-coin'));
+        }}
+        onVictoryRecorded={(result) => {
+          setStorage(recordRiddleVictory('counterfeit-coin', result));
         }}
       />
     );

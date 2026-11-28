@@ -16,6 +16,52 @@ interface AnthologyHubProps {
 }
 
 const ChapterMiniArt: React.FC<{ id: RiddleId; isLight: boolean }> = ({ id, isLight }) => {
+  if (id === 'counterfeit-coin') {
+    return (
+      <svg
+        viewBox="0 0 500 260"
+        className="h-full w-full"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden="true"
+      >
+        <defs>
+          <linearGradient id="hubCoinBg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={isLight ? '#232c3d' : '#080b12'} />
+            <stop offset="100%" stopColor={isLight ? '#313d54' : '#111827'} />
+          </linearGradient>
+        </defs>
+        <rect width="500" height="260" fill="url(#hubCoinBg)" />
+        {/* Desk */}
+        <rect y="216" width="500" height="44" fill={isLight ? '#1c2433' : '#0b0e17'} />
+        <line x1="0" y1="216" x2="500" y2="216" stroke="#c99754" strokeOpacity="0.3" />
+        {/* Brass Scale Pillar */}
+        <path d="M214 216 H286 L276 204 H224 Z" fill="#7c5928" stroke="#d4a157" strokeWidth="1" />
+        <rect x="246" y="76" width="8" height="128" rx="3" fill="#8c6530" stroke="#d4a157" strokeWidth="1" />
+        <circle cx="250" cy="72" r="6" fill="#d4a157" />
+        {/* Gently Rocking Beam */}
+        <motion.g
+          style={{ originX: '250px', originY: '92px' }}
+          animate={{ rotate: [-6, 6, -6] }}
+          transition={{ repeat: Infinity, duration: 5.5, ease: 'easeInOut' }}
+        >
+          <line x1="146" y1="92" x2="354" y2="92" stroke="#efc06e" strokeWidth="3.5" strokeLinecap="round" />
+          {/* Left Pan */}
+          <line x1="148" y1="92" x2="122" y2="156" stroke="#c99754" strokeOpacity="0.65" strokeWidth="1.2" />
+          <line x1="148" y1="92" x2="174" y2="156" stroke="#c99754" strokeOpacity="0.65" strokeWidth="1.2" />
+          <path d="M116 156 H180 Q172 168 148 168 Q124 168 116 156 Z" fill="#8c6530" stroke="#f6d79c" strokeWidth="1.1" />
+          <circle cx="140" cy="148" r="6.5" fill="#e8a849" stroke="#fff0c4" strokeWidth="1" />
+          <circle cx="156" cy="148" r="6.5" fill="#e8a849" stroke="#fff0c4" strokeWidth="1" />
+          {/* Right Pan */}
+          <line x1="352" y1="92" x2="326" y2="156" stroke="#c99754" strokeOpacity="0.65" strokeWidth="1.2" />
+          <line x1="352" y1="92" x2="378" y2="156" stroke="#c99754" strokeOpacity="0.65" strokeWidth="1.2" />
+          <path d="M320 156 H384 Q376 168 352 168 Q328 168 320 156 Z" fill="#8c6530" stroke="#f6d79c" strokeWidth="1.1" />
+          <circle cx="344" cy="148" r="6.5" fill="#e8a849" stroke="#fff0c4" strokeWidth="1" />
+          <circle cx="360" cy="148" r="6.5" fill="#e8a849" stroke="#fff0c4" strokeWidth="1" />
+        </motion.g>
+      </svg>
+    );
+  }
+
   if (id === 'virus-riddle') {
     return (
       <svg
@@ -605,10 +651,11 @@ export const AnthologyHub: React.FC<AnthologyHubProps> = ({
           </h1>
         </motion.div>
 
-        {/* Playable Chapters Gallery (Symmetrical 2x4 Grid for all 8 Chapters) */}
+        {/* Playable Chapters Gallery (Symmetrical 2x4 Grid for I-VIII + Full-Width Master Finale IX) */}
         <section className="mt-10 sm:mt-14 grid gap-6 md:grid-cols-2">
           {playableChapters.map((chapter, idx) => {
             const progress = storage.riddles[chapter.id];
+            const isFinale = chapter.id === 'three-oracles';
 
             const bestLabel =
               chapter.id === 'bridge-riddle'
@@ -625,6 +672,8 @@ export const AnthologyHub: React.FC<AnthologyHubProps> = ({
                 ? `${progress?.bestMoves} drops`
                 : chapter.id === 'virus-riddle'
                 ? `${progress?.bestMoves} moves`
+                : chapter.id === 'counterfeit-coin'
+                ? `${progress?.bestMoves} weighings`
                 : `${progress?.bestMoves} Qs`;
 
             const badgeText =
@@ -642,6 +691,8 @@ export const AnthologyHub: React.FC<AnthologyHubProps> = ({
                 ? '2 EGGS · 14 DROPS'
                 : chapter.id === 'virus-riddle'
                 ? '15 ROOMS · 4×4 LAB'
+                : chapter.id === 'counterfeit-coin'
+                ? '12 COINS · 3 WEIGHINGS'
                 : 'FINALE · 3 QUESTIONS';
 
             return (
@@ -649,11 +700,19 @@ export const AnthologyHub: React.FC<AnthologyHubProps> = ({
                 key={chapter.id}
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.045 * idx, ease: [0.22, 1, 0.36, 1] }}
-                className="group flex flex-col overflow-hidden rounded-[24px] border border-paper-900/10 bg-paper-50 shadow-[0_24px_60px_-24px_rgba(26,24,21,0.14)] dark:border-white/[0.08] dark:bg-ink-900/90 dark:shadow-[0_32px_90px_-30px_rgba(0,0,0,0.95)] transition-colors duration-300"
+                transition={{ duration: 0.55, delay: 0.04 * idx, ease: [0.22, 1, 0.36, 1] }}
+                className={`group flex overflow-hidden rounded-[24px] border border-paper-900/10 bg-paper-50 shadow-[0_24px_60px_-24px_rgba(26,24,21,0.14)] dark:border-white/[0.08] dark:bg-ink-900/90 dark:shadow-[0_32px_90px_-30px_rgba(0,0,0,0.95)] transition-colors duration-300 ${
+                  isFinale ? 'md:col-span-2 flex-col md:flex-row' : 'flex-col'
+                }`}
               >
                 {/* Live Miniature Artwork Header */}
-                <div className="relative h-48 sm:h-52 w-full overflow-hidden border-b border-paper-900/10 dark:border-white/[0.07] bg-ink-950">
+                <div
+                  className={`relative overflow-hidden bg-ink-950 ${
+                    isFinale
+                      ? 'h-52 md:h-auto md:w-[46%] border-b md:border-b-0 md:border-r border-paper-900/10 dark:border-white/[0.07]'
+                      : 'h-48 sm:h-52 w-full border-b border-paper-900/10 dark:border-white/[0.07]'
+                  }`}
+                >
                   <ChapterMiniArt id={chapter.id} isLight={isLight} />
                   <div className="pointer-events-none absolute bottom-3 right-4 font-mono text-[10px] tracking-[0.18em] uppercase text-ivory-100/75">
                     {badgeText}

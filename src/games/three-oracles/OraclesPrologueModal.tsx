@@ -35,7 +35,7 @@ export const OraclesPrologueModal: React.FC<OraclesPrologueModalProps> = ({
         )}
 
         <div className="text-[11px] font-medium uppercase tracking-[0.26em] text-gold-600 dark:text-gold-300/80">
-          Chapter VIII · The Three Gods Riddle
+          Chapter IX · The Three Gods Riddle
         </div>
         <h2 className="mt-1.5 font-display text-3xl sm:text-4xl font-semibold text-paper-900 dark:text-ivory-100">
           The Three Oracles

@@ -13,11 +13,12 @@ An interactive web anthology that reimagines timeless logic and probability para
 | **Chapter V** | **The Penniless Pilgrim** | The Penniless Pilgrim Riddle | Navigate the 4×4 street grid of Duonia (`E +2`, `W −2`, `S ×2`, `N ÷2`) without repeating a street to reach the SE Temple at **0 tax** (Par: 20 steps). |
 | **Chapter VI** | **The Belltower Eggs** | The 2-Egg Drop Riddle | Pinpoint the exact highest safe floor of a 100-floor belltower with **2 crystal eggs** in at most **14 drops**, backed by an adversarial worst-case strategy engine. |
 | **Chapter VII** | **The Quarantine Grid** | The Virus Riddle | Clear all **15 contaminated rooms** of a 4×4 lab without re-entering sealed rooms and escape out the SE Exit—exploiting the clean NW Entrance parity loophole (Par: 16 moves). |
-| **Chapter VIII** | **The Three Oracles** | The Three Gods Riddle | Identify **Truth**, **False**, and **Random** speaking an unknown `DA`/`JA` tongue in **3 direct or embedded questions**; live 12-world logical solver. |
+| **Chapter VIII** | **The Twelve Coins** | The Counterfeit Coin Riddle | Find the single **counterfeit coin** (heavier or lighter) among 12 identical gold coins using a balance scale in at most **3 weighings**; live 24-world solver. |
+| **Chapter IX** | **The Three Oracles** | The Three Gods Riddle | Identify **Truth**, **False**, and **Random** speaking an unknown `DA`/`JA` tongue in **3 direct or embedded questions**; live 12-world logical solver. |
 
 ## Features
 
-- **Pure, Tested Game Engines:** Each chapter's rules and optimal solvers live in framework-free `engine.ts` modules covered by **50 Vitest unit tests**.
+- **Pure, Tested Game Engines:** Each chapter's rules and optimal solvers live in framework-free `engine.ts` modules covered by **55 Vitest unit tests**.
 - **Handcrafted Minimalist Visuals:** Custom SVG figures, weight-sensitive bridge physics, buoyant rowing water waves, animated liquid transfers, 3D swinging bronze vault doors, and veiled marble Oracles.
 - **Dark & Light Themes:** Seamlessly switch between *Nocturne Ink* (dark) and *Warm Archival Parchment* (light), persisted in `localStorage`.
 - **Zero-Asset Procedural Audio:** Synthesized Web Audio API footsteps, bridge creaks, oar strokes, pouring crystal liquids, vault locks, and oracle chimes with a global mute toggle.
@@ -38,7 +39,7 @@ npm install
 # Launch local dev server (http://localhost:5173)
 npm run dev
 
-# Run all 33 game-engine unit tests
+# Run all 55 game-engine unit tests
 npm test
 
 # Type-check and build production bundle
@@ -53,15 +54,16 @@ npm run build
 │   ├── core/                  # Shared catalog, types, Web Audio synth & storage
 │   ├── components/            # AnthologyHub gallery UI
 │   └── games/
-│       ├── bridge-riddle/     # Chapter I  — engine, tests, story & scene
-│       ├── midnight-ferry/    # Chapter II — engine, tests, story & scene
-│       ├── alchemist-jugs/    # Chapter III — engine, tests, story & scene
-│       ├── three-doors/       # Chapter IV — engine, tests, story & scene
-│       ├── penniless-pilgrim/ # Chapter V   — engine, tests, story & scene
+│       ├── bridge-riddle/     # Chapter I    — engine, tests, story & scene
+│       ├── midnight-ferry/    # Chapter II   — engine, tests, story & scene
+│       ├── alchemist-jugs/    # Chapter III  — engine, tests, story & scene
+│       ├── three-doors/       # Chapter IV   — engine, tests, story & scene
+│       ├── penniless-pilgrim/ # Chapter V    — engine, tests, story & scene
 │       ├── egg-drop/          # Chapter VI   — engine, tests, story & scene
 │       ├── virus-riddle/      # Chapter VII  — engine, tests, story & scene
-│       └── three-oracles/     # Chapter VIII — engine, tests, story & scene
-├── CONTRIBUTING.md            # Guide for adding Chapter VI+
+│       ├── counterfeit-coin/  # Chapter VIII — engine, tests, story & scene
+│       └── three-oracles/     # Chapter IX   — engine, tests, story & scene
+├── CONTRIBUTING.md            # Guide for adding new chapters
 └── LICENSE                    # MIT License
 ```
 
